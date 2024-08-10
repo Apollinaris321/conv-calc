@@ -1,21 +1,31 @@
 <template>
-  <v-container grid-list-xs>
-    <v-row>
+  <v-container>
+    <v-row class="ga-2">
+      <v-col>
+
       <v-text-field
         v-model.number="height"
         label="height"
         id="id"
       ></v-text-field>
+      </v-col>
+
+      <v-col>
+
       <v-text-field
         v-model.number="width"
         label="width"
         id="id"
       ></v-text-field>
+      </v-col>
+      <v-col>
+
       <v-text-field
         v-model.number="channels"
         label="channels"
         id="id"
       ></v-text-field>
+      </v-col>
     </v-row>
   </v-container>
 </template>

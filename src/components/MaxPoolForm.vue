@@ -1,29 +1,47 @@
 <template>
-  <v-sheet class="mx-auto">
-    <v-container grid-list-xs>
-      <v-card-title primary-title>
-        MaxPool
-      </v-card-title>
+  <v-sheet class="p-0" >
+    <v-container class="d-flex flex-column justify-center pa-1 rounded">
+      <div class="d-flex flex-row justify-space-between">
+        <div></div>
+        <v-card-title primary-title class="justify-center align-center text-center">
+          MaxPool
+        </v-card-title>
+        <div class="d-flex flex-row justify-center align-center">
+          <v-btn color="red rounded-m p-0" min-width="0"  @click="remove">
+            <v-icon icon="mdi-close p-0" size="large"></v-icon>
+          </v-btn>
+        </div>
+      </div>
+      <v-row no-gutters class="ma-0 ga-4">
+        <v-row class="ma-0 ga-4" no-gutters>
+          <v-col>
+            <v-text-field
+              v-model.number="kernel"
+              :rules="numberRules"
+              label="kernel"
+              class="ma-0"
+            ></v-text-field>
+          </v-col>
 
-      <v-row>
-        <v-text-field
-          v-model.number="kernel"
-          :rules="numberRules"
-          label="kernel"
-        ></v-text-field>
+          <v-col>
+            <v-text-field
+              v-model.number="stride"
+              :rules="numberRules"
+              label="stride"
+            ></v-text-field>
+          </v-col>
 
-        <v-text-field
-          v-model.number="stride"
-          :rules="numberRules"
-          label="stride"
-        ></v-text-field>
-
-        <v-text-field
-          v-model.number="padding"
-          :rules="numberRules"
-          label="padding"
-        ></v-text-field>
-        <v-btn color="red" @click="remove">delete</v-btn>
+          <v-col>
+            <v-text-field
+              v-model.number="padding"
+              :rules="numberRules"
+              label="padding"
+            ></v-text-field>
+          </v-col>
+          <v-col  cols="1" class="d-flex align-center justify-center">
+              <v-icon class="handle cursor-grabbing" icon="mdi-drag-horizontal" size="x-large"></v-icon>
+          </v-col>
+        </v-row>
       </v-row>
     </v-container>
   </v-sheet>

@@ -27,7 +27,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import {
-  type DraggableEvent,
   type UseDraggableReturn,
   VueDraggable
 } from 'vue-draggable-plus'
@@ -58,14 +57,6 @@ function pause() {
 
 function start() {
   el.value?.start()
-}
-
-const onStart = (e: DraggableEvent) => {
-  console.log('start', e)
-}
-
-const onEnd = (e: DraggableEvent) => {
-  console.log('onEnd', e)
 }
 
 const onUpdate = () => {

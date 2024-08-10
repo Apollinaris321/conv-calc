@@ -1,14 +1,29 @@
 <template>
-  <v-container grid-list-xs class="w-75 d-flex flex-column align-center justify-center">
-    <InputSizeForm
-      :width="image_size.width"
-      :height="this.image_size.height"
-      :channels="image_size.channels"
-      @update="handleUpdateInput"
-    ></InputSizeForm>
-    <v-container>
-        <v-btn color="success" @click="addConv()">Conv2d</v-btn>
-        <v-btn color="purple" @click="addPool()">MaxPool2d</v-btn>
+  <v-container grid-list-xs class="w-100 d-flex flex-column align-center justify-center">
+    <v-container class="justify-center align-center ga-5">
+        <v-row class="justify-center align-center">
+          <InputSizeForm
+            :width="image_size.width"
+            :height="this.image_size.height"
+            :channels="image_size.channels"
+            @update="handleUpdateInput"
+            class="w-50"
+          ></InputSizeForm>
+        </v-row>
+        <v-row class="justify-center align-center pb-2" no-gutters>
+          <div class="d-flex flex-row justify-center align-center ga-2 ">
+            <v-btn color="success" @click="calc()">calc</v-btn>
+            <v-sheet>
+               result: {{ calc_result }}
+            </v-sheet>
+          </div>
+        </v-row>
+        <v-row class="justify-center align-center pb-2 pr-2" no-gutters>
+          <div class="d-flex flex-row justify-center align-center ga-2 ">
+            <v-btn color="success" @click="addConv()">Conv2d</v-btn>
+            <v-btn color="purple" @click="addPool()">MaxPool2d</v-btn>
+          </div>
+        </v-row>
     </v-container>
 
     <VueDraggable
@@ -17,12 +32,14 @@
       v-model="list"
       :animation="150"
       ghostClass="ghost"
+      handle=".handle"
+      class="w-50"
     >
-      <li
+      <div
         v-for="(item, i) in list"
         :key="item.id"
         :item="item"
-        class="cursor-move bg-gray-500/5 rounded p-3"
+        class="p-3 d-flex flex-column pb-2"
       >
           <ConvForm
             v-if="item.title=='conv'"
@@ -40,10 +57,9 @@
             :pool="item"
             :kernel="item.kernel"
           ></MaxPoolForm>
-      </li>
+        </div>
     </VueDraggable>
-    <v-btn color="success" @click="showList()">showList</v-btn>
-    <v-btn color="success" @click="calc()">calc</v-btn>
+
   </v-container>
 </template>
 
@@ -66,7 +82,8 @@ export default {
       toggle: "conv2d",
       id_counter: 0,
       list: [],
-      image_size: {width: 100, height: 100, channels: 0}
+      image_size: {width: 100, height: 100, channels: 0},
+      calc_result: 0,
     }
   },
   methods: {
@@ -91,7 +108,7 @@ export default {
           result = this.calc_conv(result, entry.kernel, entry.stride, 0)
         }
       }
-      console.log("result: ", result);
+      this.calc_result = result
     },
     calc_conv(w, f, s, p){
       return Math.floor((w - f + 2 * p) / s) + 1
