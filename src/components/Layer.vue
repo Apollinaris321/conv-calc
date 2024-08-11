@@ -1,6 +1,8 @@
 <template>
   <v-card class="pa-3 d-flex flex-row justify-center align-center rounded-xl ga-2">
-    <v-icon class="handle cursor-grabbing" icon="mdi-drag-horizontal" size="x-large"></v-icon>
+    <div>
+      <v-icon class="handle cursor-grabbing" icon="mdi-drag-horizontal" size="x-large"></v-icon>
+    </div>
     <div class="d-flex flex-row justify-space-between">
       <v-card-title primary-title class="justify-center align-center text-center">
         MaxPool
@@ -11,19 +13,18 @@
       :rules="numberRules"
       label="kernel"
       class="ma-0"
-      color="primary"
     ></v-text-field>
+
     <v-text-field
       v-model.number="stride"
       :rules="numberRules"
       label="stride"
-      color="primary"
     ></v-text-field>
+
     <v-text-field
       v-model.number="padding"
       :rules="numberRules"
       label="padding"
-      color="primary"
     ></v-text-field>
     <div class="d-flex flex-row justify-center align-center">
       <v-btn color="red rounded-m pa-2" min-width="0"  @click="remove">

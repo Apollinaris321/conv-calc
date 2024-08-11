@@ -14,6 +14,7 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Home: typeof import('./src/components/Home.vue')['default']
     InputSizeForm: typeof import('./src/components/InputSizeForm.vue')['default']
+    Layer: typeof import('./src/components/Layer.vue')['default']
     MaxPoolForm: typeof import('./src/components/MaxPoolForm.vue')['default']
   }
 }

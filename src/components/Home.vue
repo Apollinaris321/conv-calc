@@ -1,5 +1,8 @@
 <template>
   <v-container grid-list-xs class="w-100 d-flex flex-column align-center justify-center">
+    <h1>
+      Conv - Output - Calc
+    </h1>
     <v-container class="justify-center align-center ga-5">
         <v-row class="justify-center align-center">
           <InputSizeForm
@@ -20,7 +23,7 @@
         </v-row>
         <v-row class="justify-center align-center pb-2 pr-2" no-gutters>
           <div class="d-flex flex-row justify-center align-center ga-2 ">
-            <v-btn color="success" @click="addConv()">Conv2d</v-btn>
+            <v-btn class="text-white" color="orange" @click="addConv()">Conv2d</v-btn>
             <v-btn color="purple" @click="addPool()">MaxPool2d</v-btn>
           </div>
         </v-row>
@@ -49,6 +52,15 @@
             :conv="item"
             >
           </ConvForm>
+          <Layer
+            v-else-if="item.title=='layer'"
+            @remove="handleIdClicked"
+            @update="handleUpdate"
+            :id="item.id"
+            :pool="item"
+            :kernel="item.kernel"
+           >
+          </Layer>
           <MaxPoolForm
             v-else
             @remove="handleIdClicked"
@@ -71,6 +83,7 @@ import MaxPoolForm from './MaxPoolForm.vue';
 import Drag from './Drag.vue';
 import Drag2 from './Drag2.vue';
 import InputSizeForm from './InputSizeForm.vue';
+import Layer from './Layer.vue';
 
 const toggle = ref()
 export default {
@@ -87,6 +100,10 @@ export default {
     }
   },
   methods: {
+    addLayer(){
+      this.list.push({id: this.id_counter, title:"layer", channel: 9, kernel: 3, stride: 1, padding: 0})
+      this.id_counter += 1
+    },
     addConv(){
       this.list.push({id: this.id_counter, title:"conv", channel: 9, kernel: 3, stride: 1, padding: 0})
       this.id_counter += 1

@@ -1,8 +1,10 @@
 <template>
   <v-container>
     <v-row class="ga-2">
+      <h3 class="d-flex align-center justify-center">
+        Image dimensions:
+      </h3>
       <v-col>
-
       <v-text-field
         v-model.number="height"
         label="height"
